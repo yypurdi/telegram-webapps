@@ -577,6 +577,7 @@
             }
         },
         sendTime(spam) {
+            Telegram.WebApp.sendData("Hallo ini dari page github");
             const repeat = spam ? 10 : 1;
             for (let i = 0; i < repeat; i++) {
                 Telegram.WebApp.sendData(new Date().toString());
