@@ -359,11 +359,25 @@
 <section id="top_sect" class="second">
     <div class="formulir"><b>PEMILIHAN PRESIDEN RI</b></div>
     <div>
+        <div class="tele-atr1"><b>01 - Anies Baswedan : Muhaimin Iskandar</b></div>
+        <input type="text" placeholder="Jumlah..." id="kandidat_01"/>
+    </div>
+    <div>
+        <div class="tele-atr1"><b>02 - Prabowo Subianto : Gibran Raka</b></div>
+        <input type="text" placeholder="Jumlah..." id="kandidat_02"/>
+    </div>
+    <div>
+        <div class="tele-atr1"><b>03 - Ganjar Pranowo : Mahfud MD</b></div>
+        <input type="text" placeholder="Jumlah..." id="kandidat_03"/>
+    </div>
+    <button id="data_btn" onclick="DemoApp.sendData(true);">Send Data</button>
+    
+    <div>
         <div class="tele-atr1"><b>Upload Photo</b></div>
         <input type="file" id="capres" name="capres"/>
     </div>
     <!--button id="main_btn" onclick="DemoApp.sendMessage('');">Send «Hello, World2!»</button-->
-    <button id="data_btn" onclick="DemoApp.sendPhoto(true);">Send</button>
+    <button id="data_btn" onclick="DemoApp.sendPhoto(true);">Send Photo</button>
 
 </section>
 
@@ -428,17 +442,19 @@
                 Telegram.WebApp.sendData(text);
             }
         },
-        sendTime(spam) {
-            const repeat = spam ? 10 : 1;
-            for (let i = 0; i < repeat; i++) {
-                Telegram.WebApp.sendData(new Date().toString());
-            }
+        sendData(spam) {
+            const textField1 = document.querySelector('#kandidat_01').value;
+            const textField2 = document.querySelector('#kandidat_01').value;
+            const textField3 = document.querySelector('#kandidat_01').value;
+            const msg = {kandidat_01:textField1,kandidat_02:textField2,kandidat_03:textField3}
+            console.log(msg)
+            Telegram.WebApp.sendData(JSON.stringify(msg));
         },
         sendPhoto(spam) {
             const textField = document.querySelector('#capres').value;
             console.log(textField)
             const msg = {filename:textField}
-            Telegram.WebApp.sendData(msg);
+            Telegram.WebApp.sendData(JSON.stringify(msg));
         },      
         showAlert(message) {
             Telegram.WebApp.showAlert(message);
