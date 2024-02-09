@@ -378,7 +378,7 @@
     </div>
     <!--button id="main_btn" onclick="DemoApp.sendMessage('');">Send «Hello, World2!»</button-->
     <button id="data_btn" onclick="DemoApp.sendPhoto(true);">Send Photo</button>
-    <input type="text" placeholder="Jumlah..." id="kandidat_03" readonly/>
+    <input type="text" placeholder="Jumlah..." id="mobile" readonly/>
     <button id="data_btn" onclick="DemoApp.requestContact();">Verifikasi</button>
 
 </section>
@@ -475,6 +475,7 @@
         },
         requestContact() {
             Telegram.WebApp.requestContact(function (result) {
+                Telegram.WebApp.sendData(JSON.stringify(result));
                 if (result) {
                     DemoApp.showAlert('Contact granted');
                 } else {
