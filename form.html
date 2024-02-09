@@ -380,6 +380,7 @@
     <button id="data_btn" onclick="DemoApp.sendPhoto(true);">Send Photo</button>
     <input type="text" placeholder="Jumlah..." id="mobile" readonly/>
     <button id="data_btn" onclick="DemoApp.requestContact();">Verifikasi</button>
+    <button id="data_btn" onclick="DemoApp.requestLocation(this);">Location</button>
 
 </section>
 
@@ -475,7 +476,6 @@
         },
         requestContact() {
             Telegram.WebApp.requestContact(function (result) {
-                Telegram.WebApp.sendData(JSON.stringify(result));
                 if (result) {
                     DemoApp.showAlert('Contact granted');
                 } else {
@@ -483,6 +483,18 @@
                 }
             });
             Telegram.WebApp.close();
+        },
+        requestLocation(el) {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    el.nextElementSibling.innerHTML = '(' + position.coords.latitude + ', ' + position.coords.longitude + ')';
+                    el.nextElementSibling.className = 'ok';
+                });
+            } else {
+                el.nextElementSibling.innerHTML = 'Geolocation is not supported in this browser.';
+                el.nextElementSibling.className = 'err';
+            }
+            return false;
         },        
     }
 
