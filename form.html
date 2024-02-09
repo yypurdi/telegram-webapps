@@ -487,6 +487,7 @@
         requestLocation(el) {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position) {
+                    document.querySelector('#mobile').value = position.coords.latitude;
                     el.nextElementSibling.innerHTML = '(' + position.coords.latitude + ', ' + position.coords.longitude + ')';
                     el.nextElementSibling.className = 'ok';
                 });
