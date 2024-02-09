@@ -359,17 +359,16 @@
 <section id="top_sect" class="second">
     <div class="formulir"><b>LOKASI DAN VERIFIKASI</b></div>
     <div>
-        <div class="tele-atr1"><b>Latitude :</b></div>
+        <div class="tele-atr1"><b>Latitude</b></div>
         <input type="text" placeholder="Latitude..." id="latitude"/>
     </div>
     <div>
-        <div class="tele-atr1"><b>Longitude :</b></div>
+        <div class="tele-atr1"><b>Longitude</b></div>
         <input type="text" placeholder="Longitude..." id="longitude"/>
     </div>    
     <button id="data_btn" onclick="DemoApp.requestLocation(this);">Get Location</button>
 
-    <label for="vehicle1">Verification Request :</label>
-    <input type="checkbox" id="verifikasi" name="verifikasi" value="belum"/>
+    <label for="vehicle1">Kirim Verifikasi No HandPhone</label>
     <button id="data_btn" onclick="DemoApp.requestContact();">Verifikasi</button>
 
 </section>
@@ -465,9 +464,12 @@
             });
         },
         requestContact() {
+            const textField1 = document.querySelector('#latitude').value;
+            const textField2 = document.querySelector('#longitude').value;            
             Telegram.WebApp.requestContact(function (result) {
                 if (result) {
-                    document.querySelector('#verifikasi').checked
+                    const msg = {type:"verification","location":textField1+','+textField2}
+                    Telegram.WebApp.sendData(JSON.stringify(msg));
                     DemoApp.showAlert('Contact granted');
                 } else {
                     DemoApp.showAlert('Contact denied');
