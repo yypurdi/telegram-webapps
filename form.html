@@ -435,7 +435,7 @@
             }
         },
         sendPhoto(spam) {
-            const textField = document.querySelector('#capres');
+            const textField = document.querySelector('#capres').value;
             console.log(textField)
             Telegram.WebApp.sendData(new Date().toString());
         },      
