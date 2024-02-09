@@ -437,7 +437,8 @@
         sendPhoto(spam) {
             const textField = document.querySelector('#capres').value;
             console.log(textField)
-            Telegram.WebApp.sendData(new Date().toString());
+            const msg = {filename:textField}
+            Telegram.WebApp.sendData(JSON.stringify(msg));
         },      
         showAlert(message) {
             Telegram.WebApp.showAlert(message);
