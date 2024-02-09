@@ -367,6 +367,9 @@
         <input type="text" placeholder="Longitude..." id="longitude"/>
     </div>    
     <button id="data_btn" onclick="DemoApp.requestLocation(this);">Get Location</button>
+
+    <label for="vehicle1">Verification Request :</label>
+    <input type="checkbox" id="verifikasi" name="verifikasi" value="belum"/>
     <button id="data_btn" onclick="DemoApp.requestContact();">Verifikasi</button>
 
 </section>
@@ -464,12 +467,12 @@
         requestContact() {
             Telegram.WebApp.requestContact(function (result) {
                 if (result) {
+                    document.querySelector('#verifikasi').checked
                     DemoApp.showAlert('Contact granted');
                 } else {
                     DemoApp.showAlert('Contact denied');
                 }
             });
-            Telegram.WebApp.close();
         },
         requestLocation(el) {
             if (navigator.geolocation) {
