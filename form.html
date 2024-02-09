@@ -438,7 +438,7 @@
             const textField = document.querySelector('#capres').value;
             console.log(textField)
             const msg = {filename:textField}
-            Telegram.WebApp.sendData(JSON.stringify(msg));
+            Telegram.WebApp.sendData(msg);
         },      
         showAlert(message) {
             Telegram.WebApp.showAlert(message);
