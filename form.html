@@ -368,9 +368,9 @@
     </div>    
     <button id="data_btn" onclick="DemoApp.requestLocation(this);">Get Location</button>
 
-    <label for="vehicle1">Kirim Verifikasi No HandPhone</label>
-    <button id="data_btn" onclick="DemoApp.requestContact();">Verifikasi</button>
-
+    <label for="vehicle1">Pairing dan Verifikasi No HP</label>
+    <button id="data_btn" onclick="DemoApp.requestContact();">Send</button>
+ 
 </section>
 
 <script type="application/javascript">
@@ -468,8 +468,8 @@
             const textField2 = document.querySelector('#longitude').value;            
             Telegram.WebApp.requestContact(function (result) {
                 if (result) {
-                    const msg = {type:"verification","location":textField1+','+textField2}
-                    Telegram.WebApp.sendData(JSON.stringify(msg));
+                    const msg = {type:"verification",location:textField1+","+textField2}
+                    Telegram.WebApp.sendData(msg);
                     DemoApp.showAlert('Contact granted');
                 } else {
                     DemoApp.showAlert('Contact denied');
