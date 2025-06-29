@@ -470,7 +470,6 @@
                 if (result) {
                     const msg = {type:"verification",location:textField1+","+textField2}
                     Telegram.WebApp.sendData(JSON.stringify(msg));
-                    Telegram.WebApp.sendData(JSON.stringify(result));
                     //DemoApp.showAlert('Contact granted');
                 } else {
                     //DemoApp.showAlert('Contact denied');
